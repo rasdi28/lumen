@@ -22,3 +22,40 @@ If you discover a security vulnerability within Lumen, please send an e-mail to 
 ## License
 
 The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+---
+# Dokumentasi Lumen
+
+> instalasi
+```
+composer create-project --prefer-dist laravel/lumen [nama project]
+```
+> Menjalankan Aplikasi
+
+```
+php -S localhost:8000 -t public
+```
+
+### Menghidupkan beberapa Fitur
+- masuk ke bootstrap > app.php <br>
+mengaktifkan seperti eloquen
+
+
+---
+
+# Belajar Memulai Projek
+```
+// membuat table
+
+php artisan make:migration create_nama_table
+
+// untuk migration seperti biasa
+
+php artisan migrate
+
+// untuk membuat controller dan model dilakukan secara manual karena dalam lumen tidak ada fitur artisan 
+
+
+
+
+```
