@@ -6,9 +6,14 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
+
         $blog = Blog::all();
         return response()->json([
             'status'=>'success',
@@ -19,6 +24,7 @@ class BlogController extends Controller
 
     public function create(Request $request)
     {
+
         $data = $request->all();
         $blog = Blog::create($data);
 
@@ -28,8 +34,13 @@ class BlogController extends Controller
 
     public function show($id)
     {
-        $blog = Blog::findOrFail($id);
+        $blog = Blog::find($id);
+        if(!$blog){
+            return response()->json([
+                'message'=>'Blog Not Found'],404);
+        }
         return response()->json($blog);
+
     }
 
     public function update(Request $request, $id)
@@ -39,7 +50,22 @@ class BlogController extends Controller
         $blog_baru->fill($blog);
         $blog_baru->save();
 
-        return response()->json($blog);
+        return response()->json($blog_baru);
 
+    }
+
+    public function destroy($id)
+    {
+        $blog = Blog::find($id);
+        if (!$blog){
+            return response()->json([
+                'message'=>'File Not Found'
+            ]);
+        }
+
+        $blog->delete();
+        return response()->json([
+            'message'=>'Delete Data Successfuly'
+        ]);
     }
 }

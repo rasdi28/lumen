@@ -28,9 +28,10 @@ $router->group(['prefix'=>'blog'], function() use ($router){
     $router->post('/','BlogController@create');
     $router->get('/{id}','BlogController@show');
     $router->put('/{id}','BlogController@update');
+    $router->delete('/{id}','BlogController@destroy');
     
 });
 
-
-
+$router->post('/register','UserController@register');
+$router->post('/login','UserController@login');
 
