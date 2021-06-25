@@ -10,7 +10,11 @@ class BlogController extends Controller
     public function index()
     {
         $blog = Blog::all();
-        return response()->json($blog);
+        return response()->json([
+            'status'=>'success',
+            'message'=>'Load Data Blog succcessfuly',
+            $blog
+        ]);
     }
 
     public function create(Request $request)
@@ -26,5 +30,16 @@ class BlogController extends Controller
     {
         $blog = Blog::findOrFail($id);
         return response()->json($blog);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $blog_baru = Blog::findOrFail($id);
+        $blog = $request->all();
+        $blog_baru->fill($blog);
+        $blog_baru->save();
+
+        return response()->json($blog);
+
     }
 }

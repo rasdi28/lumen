@@ -2,6 +2,8 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
+use App\Models\Product;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -12,17 +14,23 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
-$router->get('/product','ProductController@index');
-$router->get('/product/{id}','ProductController@show');
-$router->post('/product','ProductController@create');
 
 
+$router->group(['prefix'=>'product'],function() use ($router){
+    $router->get('/','ProductController@index');
+    $router->get('/{id}','ProductController@show');
+    $router->post('/','ProductController@create');
+});
 
 
+$router->group(['prefix'=>'blog'], function() use ($router){
+    $router->get('/','BlogController@index');
+    $router->post('/','BlogController@create');
+    $router->get('/{id}','BlogController@show');
+    $router->put('/{id}','BlogController@update');
+    
+});
 
 
-$router->get('/blog','BlogController@index');
-$router->post('/blog','BlogController@create');
-$router->get('/blog/{id}','BlogController@show');
 
 
