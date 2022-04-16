@@ -14,12 +14,23 @@ use App\Models\Product;
 | and give it the Closure to call when that URI is requested.
 |
 */
+$router->get('/',function(){
+    return "hello";
+});
 
+$router->group(['prefix'=>'test'], function() use ($router){
+    $router->get('/','TestController@index');
+    $router->post('/','TestController@create');
+    $router->get('/{id}','TestController@show');
+    $router->put('/{id}','TestController@update');
+    $router->delete('/{id}','TestController@destroy');
+});
 
 $router->group(['prefix'=>'product'],function() use ($router){
     $router->get('/','ProductController@index');
     $router->get('/{id}','ProductController@show');
     $router->post('/','ProductController@create');
+ 
 });
 
 
