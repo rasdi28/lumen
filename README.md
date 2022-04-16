@@ -59,3 +59,16 @@ php artisan migrate
 
 
 ```
+
+
+## HABIS CLONE
+```
+composer i
+
+composer update
+
+setting database
+
+php artisan migrate
+
+```
